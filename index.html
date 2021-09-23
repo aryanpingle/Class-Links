@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/png">
+    <!-- PWA -->
+    <meta name="theme-color" content="#00fa9a">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    <script>
+        // If browser supports service workers
+        if("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("sw.js")
+        }
+    </script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div id="page">
+        <div>
+            <div class="category">
+                <div>Ongoing</div>
+            </div>
+            <a target="_blank" id="class-1" class="link">
+                <div class="class-name">^.^</div>
+                <div class="meet-link"></div>
+                <div class="run-time"></div>
+            </a>
+        </div>
+        <div>
+            <div class="category">
+                <div>Upcoming</div>
+            </div>
+            <a target="_blank" id="class-2" class="link">
+                <div class="class-name">^.^</div>
+                <div class="meet-link"></div>
+                <div class="run-time"></div>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <!-- <script src="schedule.js"></script> -->
+    <script src="main.js"></script>
+</body>
+</html>
