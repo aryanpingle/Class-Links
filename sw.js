@@ -1,5 +1,5 @@
 const CACHE_NAME = "CACHE"
-const ASSETS = ["/main.css", "/index.html", "/main.js", "/images/favicon.png"]
+const ASSETS = ["/main.css", "/index.html", "/main.js", "/schedule.js", "/images/favicon.png"]
 
 self.addEventListener("install", event=>{
     event.waitUntil((async () => {

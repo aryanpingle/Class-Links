@@ -1,4 +1,4 @@
-raw = {
+var schedule = {
     "Econometric Methods Tutorial": {
         "id": "ECON F241",
         "time": "M8-9",
@@ -17,7 +17,7 @@ raw = {
     "SAPM": {
         "id": "ECON F412",
         "time": "MWF4-5",
-        "link": ""
+        "link": "hrp-bkcm-iji"
     },
     "POM": {
         "id": "MGTS F211",
@@ -55,10 +55,3 @@ raw = {
         "link": "pyx-vxem-uuk"
     }
 }
-
-import json
-import re
-
-src = open("main.js", encoding='utf-8').read()
-src = re.sub(r'(?<=// Schedule\n).*?(?=\n)', f'var schedule = {json.dumps(raw)}', src, count=1, flags=re.DOTALL)
-open("main.js", 'w', encoding='utf-8').write(src)
