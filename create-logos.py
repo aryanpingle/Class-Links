@@ -1,19 +1,28 @@
+import re
 from PIL import Image
 
 img = Image.open("images/favicon.png").convert("RGBA")
 
-sizes = (72,96,120,128,144,152,180,192,384,512)
+sizes = (72,96,128,144,192,360)
 
 for i in sizes:
     img.resize((i,i)).save(f"images/logo{i}.png")
 
-newdata = img.getdata()
+src = open("manifest.json").read()
 
-def process(rgba):
-    if rgba[-1] < 128:
-        rgba = [255,255,255,255]
-    return tuple(rgba)
+template = """        {{
+            "src": "/images/logo{0}.png",
+            "type": "image/png",
+            "sizes": "{0}x{0}",
+            "purpose": "any"
+        }},
+        {{
+            "src": "/images/logo{0}.png",
+            "type": "image/png",
+            "sizes": "{0}x{0}",
+            "purpose": "maskable"
+        }}"""
 
-newdata = list(map(process, newdata))
-img.putdata(newdata)
-img.resize((192,192)).save("images/apple-touch-icon.png")
+src = re.sub(r'(?<="icons": \[\n).*?(?=\s+\])', ",\n".join(template.format(size) for size in sizes), src, flags=re.DOTALL)
+
+open("manifest.json", 'w', encoding='utf-8').write(src)

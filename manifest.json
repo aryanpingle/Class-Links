@@ -1,56 +1,78 @@
 {
     "short_name": "Links",
-    "name": "2-1 Meet Links",
+    "name": "BITS Classes",
     "icons": [
         {
             "src": "/images/logo72.png",
             "type": "image/png",
-            "sizes": "72x72"
+            "sizes": "72x72",
+            "purpose": "any"
+        },
+        {
+            "src": "/images/logo72.png",
+            "type": "image/png",
+            "sizes": "72x72",
+            "purpose": "maskable"
         },
         {
             "src": "/images/logo96.png",
             "type": "image/png",
-            "sizes": "96x96"
+            "sizes": "96x96",
+            "purpose": "any"
         },
         {
-            "src": "/images/logo120.png",
+            "src": "/images/logo96.png",
             "type": "image/png",
-            "sizes": "120x120"
+            "sizes": "96x96",
+            "purpose": "maskable"
         },
         {
             "src": "/images/logo128.png",
             "type": "image/png",
-            "sizes": "128x128"
+            "sizes": "128x128",
+            "purpose": "any"
+        },
+        {
+            "src": "/images/logo128.png",
+            "type": "image/png",
+            "sizes": "128x128",
+            "purpose": "maskable"
         },
         {
             "src": "/images/logo144.png",
             "type": "image/png",
-            "sizes": "144x144"
+            "sizes": "144x144",
+            "purpose": "any"
         },
         {
-            "src": "/images/logo152.png",
+            "src": "/images/logo144.png",
             "type": "image/png",
-            "sizes": "152x152"
-        },
-        {
-            "src": "/images/logo180.png",
-            "type": "image/png",
-            "sizes": "180x180"
+            "sizes": "144x144",
+            "purpose": "maskable"
         },
         {
             "src": "/images/logo192.png",
             "type": "image/png",
-            "sizes": "192x192"
+            "sizes": "192x192",
+            "purpose": "any"
         },
         {
-            "src": "/images/logo384.png",
+            "src": "/images/logo192.png",
             "type": "image/png",
-            "sizes": "384x384"
+            "sizes": "192x192",
+            "purpose": "maskable"
         },
         {
-            "src": "/images/logo512.png",
+            "src": "/images/logo360.png",
             "type": "image/png",
-            "sizes": "512x512"
+            "sizes": "360x360",
+            "purpose": "any"
+        },
+        {
+            "src": "/images/logo360.png",
+            "type": "image/png",
+            "sizes": "360x360",
+            "purpose": "maskable"
         }
     ],
     "start_url": "/index.html",

@@ -1,55 +1,64 @@
 raw = {
-    "M3 Tutorial": {
+    "Econometric Methods Tutorial": {
+        "id": "ECON F241",
         "time": "M8-9",
-        "link": "ahi-tdvc-fxb"
+        "link": ""
     },
-    "M3 Lecture": {
-        "time": "MWF9-10",
-        "link": "ktt-qiek-avn"
+    "Macro Economics": {
+        "id": "ECON F243",
+        "time": "MWF11-12",
+        "link": "gpy-sjvi-qdr"
     },
-    "Dev Eco": {
+    "Optimization": {
+        "id": "MATH F212",
         "time": "MWF12-1",
-        "link": "ssv-wsoq-xaq"
+        "link": "ohn-bhzn-kwx"
     },
-    "POE - Lecture": {
-        "time": "MWF3-4",
-        "link": "xbd-cvud-qsn"
-    },
-    "Introductory Philosophy": {
+    "SAPM": {
+        "id": "ECON F412",
         "time": "MWF4-5",
-        "link": "qcz-fuog-cow"
+        "link": ""
     },
-    "EEB - Lecture": {
+    "POM": {
+        "id": "MGTS F211",
+        "time": "TuThS9-10",
+        "link": ""
+    },
+    "Econometric Methods": {
+        "id": "ECON F241",
         "time": "TuThS10-11",
-        "link": "cqu-bojp-uou"
+        "link": ""
     },
-    "MSM - Lecture": {
+    "Economic Growth and Development": {
+        "id": "ECON F244",
         "time": "TuThS11-12",
-        "link": "evp-sfwv-djv"
+        "link": "xfe-oqnn-dbp"
     },
-    "EEB - Tutorial": {
-        "time": "Tu4-5",
-        "link": "cqu-bojp-uou"
+    "Micro Economics": {
+        "id": "ECON F242",
+        "time": "Tu3-4,WF10-11",
+        "link": ""
     },
-    "MSM - Tutorial": {
+    "BAAV": {
+        "id": "ECON F355",
+        "time": "Tu5-6,WF3-4",
+        "link": ""
+    },
+    "Macro Economics Tutorial": {
+        "id": "ECON F243",
+        "time": "Th2-3",
+        "link": "kqo-fvor-aae"
+    },
+    "Economic Growth and Development Tutorial": {
+        "id": "ECON F244",
         "time": "Th4-5",
-        "link": "rdn-nksz-jcw"
-    },
-    "FuFA 1": {
-        "time": "Th5-7",
-        "link": "vjb-bbbh-seg"
-    },
-    "FuFA 2": {
-        "time": "S3-5",
-        "link": "qia-kzhs-xnf"
-    },
-    "POE - Tutorial": {
-        "time": "F5-6",
-        "link": "ffb-udcv-obh"
+        "link": "pyx-vxem-uuk"
     }
 }
 
 import json
-import pyperclip
+import re
 
-pyperclip.copy(json.dumps(raw))
+src = open("main.js", encoding='utf-8').read()
+src = re.sub(r'(?<=// Schedule\n).*?(?=\n)', f'var schedule = {json.dumps(raw)}', src, count=1, flags=re.DOTALL)
+open("main.js", 'w', encoding='utf-8').write(src)
