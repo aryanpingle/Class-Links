@@ -1,8 +1,12 @@
+"use strict"
+
 const print = console.log
 
 const class_1 = document.getElementById("class-1")
 const class_2 = document.getElementById("class-2")
 const day_names = "MTuWThFS".split(/(?=[A-Z])/)
+
+var SKIP_DAYS = 0
 
 function sort(list, lambda=e=>e) {
     list.sort((a,b)=>lambda(a)-lambda(b))
@@ -25,7 +29,7 @@ function setClass(class_element, class_name, link, start_time, end_time) {
         hours = start_time - new Date().getHours() - 1
         minutes = 60 - new Date().getMinutes()
         if(minutes == 60) {
-            hours -= 1
+            hours += 1
             minutes = 0
         }
         if(hours) {
@@ -46,7 +50,7 @@ function emptyClass(class_element) {
 }
 
 function setup() {
-    let current_day = day_names[new Date().getDay()-1]
+    let current_day = day_names[(new Date().getDay() - 1 + SKIP_DAYS) % 7]
     let current_time = new Date().getHours()
     let classes_today = []
     for(let [class_name, {link, time, id}] of Object.entries(schedule)) {
@@ -63,6 +67,8 @@ function setup() {
     }
 
     classes_today = sort(classes_today, ele=>ele[2])
+
+    print(classes_today)
 
     for(let i = 0; i < classes_today.length; ++i) {
         let [class_name, link, start, end] = classes_today[i]
