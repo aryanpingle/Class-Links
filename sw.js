@@ -24,12 +24,21 @@ async function get_request(request_event) {
     let abort_signal = abort_controller.signal
     let timeout_id = setTimeout(() => abort_controller.abort(), 3000)
 
-    return fetch(request, {signal: abort_signal}).then(data => {
-        clearTimeout(timeout_id)
-        return data
-    }).then(async response => {
-        let cache = await caches.open(CACHE_NAME)
-        cache.put(request, response.clone())
-        return response
-    }).catch(err => caches.match(request, {cacheName: CACHE_NAME}))
+    // If cached version exists, timeout the fetch after 3s
+    // Else, normal fetch
+
+    let cache_match = caches.match(request, {cacheName: CACHE_NAME})
+
+    if(cache_match) {
+        return fetch(request, {signal: abort_signal}).then(data => {
+            clearTimeout(timeout_id)
+            return data
+        }).then(async response => {
+            let cache = await caches.open(CACHE_NAME)
+            cache.put(request, response.clone())
+            return response
+        }).catch(err => cache_match)
+    }
+
+    return fetch(request)
 }

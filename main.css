@@ -88,7 +88,8 @@ a, a:hover, a:focus {
     align-items: center;
 }
 
-.meet-link {
+.classroom {
+    font-size: 1.1em;
     text-align: center;
 }
 

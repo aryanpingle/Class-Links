@@ -13,11 +13,10 @@ function sort(list, lambda=e=>e) {
     return list
 }
 
-function setClass(class_element, class_name, link, start_time, end_time) {
+function setClass(class_element, class_name, classroom, start_time, end_time) {
     class_element = class_element==1?class_1:class_2
-    class_element.setAttribute("href", `https://meet.google.com/${link}`)
-    class_element.getElementsByClassName("class-name")[0].innerHTML = class_name
-    class_element.getElementsByClassName("meet-link")[0].innerHTML = link
+    class_element.querySelector(".class-name").innerHTML = class_name
+    class_element.querySelector(".classroom").innerHTML = classroom
     let time_string = "", hours, minutes
     if(class_element == class_1) {
         hours = new Date().getHours() - start_time
@@ -39,13 +38,13 @@ function setClass(class_element, class_name, link, start_time, end_time) {
             time_string = `At ${start_time > 12 ? start_time%12 : start_time} ${start_time >= 12 ? "PM" : "AM"} &#x25cf; In ${minutes} minutes`
         }
     }
-    class_element.getElementsByClassName("run-time")[0].innerHTML = time_string
+    class_element.querySelector(".run-time").innerHTML = time_string
 }
 
 function emptyClass(class_element) {
     class_element = class_element==1?class_1:class_2
     class_element.querySelector(".class-name").innerHTML = "^.^"
-    class_element.querySelector(".meet-link").innerHTML = ""
+    class_element.querySelector(".classroom").innerHTML = ""
     class_element.querySelector(".run-time").innerHTML = ""
 }
 
@@ -53,7 +52,7 @@ function setup() {
     let current_day = day_names[(new Date().getDay() - 1 + SKIP_DAYS) % 7]
     let current_time = new Date().getHours()
     let classes_today = []
-    for(let {class_name, link, time, id} of schedule) {
+    for(let {class_name, classroom, time, id} of schedule) {
         let times = time.split(",")
 
         for(let date_and_time of times) {
@@ -61,7 +60,7 @@ function setup() {
             if(days.indexOf(current_day) != -1) {
                 date_and_time = date_and_time.match(/\d+/g)
                 date_and_time = date_and_time.map(e => parseInt(e)).map(e=>e + (e<=7?12:0))
-                classes_today.push([class_name, link, ...date_and_time])
+                classes_today.push([class_name, classroom, ...date_and_time])
             }
         }
     }
@@ -71,7 +70,7 @@ function setup() {
     print(classes_today)
 
     for(let i = 0; i < classes_today.length; ++i) {
-        let [class_name, link, start, end] = classes_today[i]
+        let [class_name, classroom, start, end] = classes_today[i]
         if(current_time < start) {
             // Remove the current class
             emptyClass(1)
