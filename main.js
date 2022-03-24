@@ -21,8 +21,8 @@ function setClass(class_element, class_name, classroom, start_time, end_time) {
     if(class_element == class_1) {
         hours = new Date().getHours() - start_time
         minutes = new Date().getMinutes()
-        if(hours) time_string = `Started ${hours} hours, ${minutes} minutes ago`
-        else time_string = `Started ${minutes} minutes ago`
+        if(hours) time_string = `At ${start_time > 12 ? start_time%12 : start_time} ${start_time >= 12 ? "PM" : "AM"} &#x25cf; ${hours} hours, ${minutes} minutes ago`
+        else time_string = `At ${start_time > 12 ? start_time%12 : start_time} ${start_time >= 12 ? "PM" : "AM"} &#x25cf; ${minutes} minutes ago`
     }
     else {
         hours = start_time - new Date().getHours() - 1
